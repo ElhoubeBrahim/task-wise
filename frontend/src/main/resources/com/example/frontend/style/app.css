@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'KanitRegular';
+    src: url('../fonts/Kanit-Regular.ttf');
+}
+
+* {
+    -fx-primary-color: #16A085;
+    -fx-text-color: #444444;
+    -fx-muted-text-color: #2C3E5060;
+    -fx-gray-color: #34495E;
+    -fx-light-primary-10: #16A08510;
+    -fx-textarea-background: #00745D;
+}
+
+.root {
+    -fx-font-size: 16;
+}
+
+.root * {
+    -fx-font-family: 'Kanit';
+}
