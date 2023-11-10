@@ -18,4 +18,30 @@
 
 .root * {
     -fx-font-family: 'Kanit';
+    -fx-text-fill: -fx-text-color;
+}
+
+#signinWithGoogleBtn,
+#authorize-btn {
+    -fx-background-color: -fx-light-primary-10;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: -fx-primary-color;
+    -fx-border-width: 2;
+    -fx-padding: 10 30;
+}
+
+#authorize-btn {
+    -fx-padding: 5 20;
+}
+
+#access-token-input,
+#access-token-input:focused {
+    -fx-background-color: #fff;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: -fx-primary-color;
+    -fx-border-width: 2;
+    -fx-padding: 5 10;
+    -fx-effect: null;
 }
