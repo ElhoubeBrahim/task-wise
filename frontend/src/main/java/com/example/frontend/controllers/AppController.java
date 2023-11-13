@@ -63,14 +63,11 @@ public class AppController {
         // Load the view
         Parent scene = FXMLLoader.load(MainApp.class.getResource("views/" + view + ".fxml"));
 
-        // Get screen dimensions
-        Screen screen = Screen.getPrimary();
-        double screenWidth = screen.getBounds().getWidth();
-        double screenHeight = screen.getBounds().getHeight();
-
         // Show the view in full screen
         Stage stage = MainApp.getStage();
-        stage.setScene(new Scene(scene, screenWidth, screenHeight));
+        stage.setMaximized(false); // This will help to center the scene in the stage with the right dimensions
+        stage.setScene(new Scene(scene));
+        stage.setMaximized(true);
         stage.show();
     }
 
