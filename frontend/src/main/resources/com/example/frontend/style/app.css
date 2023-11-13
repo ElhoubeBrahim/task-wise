@@ -3,6 +3,7 @@
     src: url('../fonts/Kanit-Regular.ttf');
 }
 
+
 * {
     -fx-primary-color: #16A085;
     -fx-text-color: #444444;
@@ -18,4 +19,102 @@
 
 .root * {
     -fx-font-family: 'Kanit';
+}
+
+
+
+#fixedContent {
+    /*-fx-background-color: -fx-textarea-background;*/
+}
+
+
+
+#prompt-vbox-left {
+    -fx-background-color: -fx-primary-color;
+    -fx-max-height: Infinity;
+    -fx-max-width: Infinity;
+    -fx-padding: 20;
+}
+
+#prompt-left-text {
+    -fx-font-size: 24;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-max-width: Infinity;
+    -fx-wrap-text: true;
+}
+
+#prompt-text-area {
+    -fx-control-inner-background: -fx-textarea-background;
+    -fx-text-fill: -fx-text-color;
+    -fx-max-height: Infinity;
+    -fx-pref-width: Infinity;
+    -fx-text-box-border: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-background-radius: 0 ;
+}
+
+#prompt-submit-button {
+    -fx-max-width: Infinity;
+    -fx-font-size: 24;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: -fx-text-color;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10;
+}
+
+#prompt-submit-button:hover{
+    -fx-cursor: hand;
+}
+
+/*The provided CSS code makes the SplitPane dividers
+non-draggable by setting their width to zero and
+making them transparent*/
+
+#prompt_layout > .split-pane-divider:hover {
+    -fx-cursor: default;
+}
+
+#prompt_layout > .split-pane-divider {
+    -fx-divider-position: 50%;
+}
+
+#prompt_layout > .split-pane-divider {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-min-width: 0;
+    -fx-max-width: 0;
+    -fx-pref-width: 0;
+}
+
+#no-event-vbox {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+    -fx-max-height: Infinity;
+    -fx-max-width: Infinity;
+    -fx-background-color: #ffffff;
+}
+
+#no-event-vbox > * {
+    -fx-alignment: center;
+}
+
+#no-event-title {
+    -fx-font-size: 22;
+    -fx-text-fill: -fx-text-color;
+    -fx-font-weight: bold;
+}
+
+#no-event-description {
+    -fx-text-fill: -fx-muted-text-color;
+}
+
+#loading-vbox{
+    -fx-alignment: center;
+    -fx-spacing: 10;
+    -fx-max-height: Infinity;
+    -fx-max-width: Infinity;
+    -fx-background-color: #ffffff;
 }
