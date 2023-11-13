@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<VBox alignment="CENTER" prefHeight="249.0" prefWidth="533.0" spacing="20.0" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frontend.controllers.AppController">
+<VBox alignment="CENTER" prefHeight="469.0" prefWidth="652.0" spacing="20.0" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frontend.controllers.AppController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-
-    <Label fx:id="welcomeText" text="jsdfkldjksjfl" />
-    <Button onAction="#onHelloButtonClick" text="Hello!" />
+   <children>
+      <ImageView fitHeight="129.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+      <Label prefHeight="18.0" prefWidth="381.0" text="Your AI assistant to organize your Google workspace">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+      <Button id="signinWithGoogleBtn" fx:id="signinWithGoogleBtn" mnemonicParsing="false" onAction="#onSigninButtonClick" text="Sign in with Google">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+               <image>
+                  <Image url="@../images/google-logo.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <HBox id="authorizeAccessTokenBox" fx:id="authorizeAccessTokenBox" alignment="CENTER" prefHeight="56.0" prefWidth="422.0" visible="false">
+         <children>
+            <TextField id="access-token-input" fx:id="accessTokenInput" prefHeight="38.0" prefWidth="327.0" promptText="Enter your access token here" />
+            <Rectangle arcHeight="5.0" fill="#ffffff00" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="10.0" />
+            <Button id="authorize-btn" mnemonicParsing="false" onAction="#onAuthorizeButtonClick" text="Authorize">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+         </children>
+      </HBox>
+   </children>
 </VBox>
