@@ -13,7 +13,7 @@ import java.io.IOException;
 public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("views/welcome-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("views/prompt-view.fxml"));
         Image icon = new Image(MainApp.class.getResourceAsStream("images/ico.png"));
 
         Scene scene = new Scene(fxmlLoader.load(), 1200, 700);
