@@ -62,7 +62,6 @@
 }
 
 #prompt-left-text {
-    -fx-font-size: 24;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
     -fx-max-width: Infinity;
@@ -71,7 +70,7 @@
 
 #prompt-text-area {
     -fx-control-inner-background: -fx-textarea-background;
-    -fx-text-fill: -fx-text-color;
+    -fx-text-fill: #ffffff;
     -fx-max-height: Infinity;
     -fx-pref-width: Infinity;
     -fx-text-box-border: transparent;
@@ -82,11 +81,10 @@
 
 #prompt-submit-button {
     -fx-max-width: Infinity;
-    -fx-font-size: 24;
     -fx-background-color: #ffffff;
     -fx-text-fill: -fx-text-color;
     -fx-font-weight: bold;
-    -fx-padding: 5 10;
+    -fx-padding: 10;
 }
 
 #prompt-submit-button:hover{
