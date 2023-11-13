@@ -25,17 +25,12 @@ public class AccessTokenService {
     private static final String HOME_DIR = System.getProperty("user.home");
     private static final String APP_FOLDER = ".task-wise";
     private static final String TOKEN_FILE_PATH = ".task-wise/access-token";
-    private final EncryptionService encryptionService = new EncryptionService();
-    private final KeyPair keyPair;
 
     public AccessTokenService() {
         try {
             // Create the app folder in the user's home directory => "~/.task-wise"
             Files.createDirectories(Paths.get(HOME_DIR, APP_FOLDER));
-
-            // Generate a key pair for RSA encryption
-            keyPair = encryptionService.generateSecretKey();
-        } catch (NoSuchAlgorithmException | IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -44,27 +39,23 @@ public class AccessTokenService {
      * Load the access token from the file system. => "~/.task-wise/access-token"
      * @return The access token
      */
-    public String loadAccessToken() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    public String loadAccessToken() throws IOException {
         Path accessTokenFile = Paths.get(HOME_DIR, TOKEN_FILE_PATH);
 
         if (!Files.exists(accessTokenFile)) {
             throw new AccessTokenNotFoundException("Access token not found.");
         }
 
-        String encryptedToken = new String(Files.readAllBytes(accessTokenFile));
-        return encryptionService.decrypt(encryptedToken, keyPair.getPrivate());
+        return new String(Files.readAllBytes(accessTokenFile));
     }
 
     /**
      * Save the access token to the file system. => "~/.task-wise/access-token"
      * @param accessToken The access token
      */
-    public void saveAccessToken(String accessToken) throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
-        String encryptedToken = encryptionService.encrypt(accessToken, keyPair.getPublic());
-
-        // Save the encrypted token to a file
+    public void saveAccessToken(String accessToken) throws IOException {
         FileWriter writer = new FileWriter(Paths.get(HOME_DIR, TOKEN_FILE_PATH).toString());
-        writer.write(encryptedToken);
+        writer.write(accessToken);
         writer.close();
     }
 
