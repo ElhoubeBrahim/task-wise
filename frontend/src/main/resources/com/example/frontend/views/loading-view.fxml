@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<VBox id="loading-vbox" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/17"
+>
+    <ImageView fitHeight="90" fitWidth="90" pickOnBounds="true" preserveRatio="true">
+        <VBox.margin>
+            <Insets bottom="40.0"/>
+        </VBox.margin>
+        <Image url="@../images/loading-icon.png"/>
+    </ImageView>
+    <Label id="loading-title" text="Please wait a moment"/>
+    <Label id="loading-description" text="Getting your Google Workspace events ready"/>
+    <ImageView fitHeight="102" fitWidth="474" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/google-workspace-logos.png"/>
+    </ImageView>
+</VBox>
