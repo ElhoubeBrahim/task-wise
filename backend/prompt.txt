@@ -1,0 +1,31 @@
+Create a JSON response without explanation that includes a list of services to be created in Google Workspace based on the given tasks. The supported services are "meet" and "calendarEvent" each with properties such as title, start, and end. For items that are neither "meet" nor "calendarEvent" include an additional object with the key "note" and gather them in the todos list of that "note" object.
+
+Any task that has a date must have a "calendarEvent" entry, and if it's a meeting it must have a "meet" entry as well. Any entry that has no dates should have a "note" entry. The "note" response must include a todos list with the items that have no dates.
+
+Today's date to use in the dates fields of the response is: {{date}}
+The response should follow the schema below according to the given type:
+
+services: [
+  {
+    type: "meet",
+    title: "Test",
+    start: "{{date}}T00:00:00.000Z",
+    end: "{{date}}T00:00:00.000Z"
+  },
+  {
+    type: "calendarEvent",
+    title: "Test",
+    start: "{{date}}T00:00:00.000Z",
+    end: "{{date}}T00:00:00.000Z"
+  },
+  {
+    type: "note",
+    todos: [
+      "todo 1",
+      "todo 2",
+      "todo 3"
+    ]
+  }
+]
+
+The tasks are as follows:
