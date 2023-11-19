@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Authorization Response</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <div class="content">
+      <img src="logo.png" alt="Task wise logo" width="150" />
+      <h2 class="instruction">
+        You can close this tab now and paste the code back to the app to
+        proceed.
+      </h2>
+      <div class="token-area">
+        <div class="access-input">
+          <input
+            id="accessTokenInput"
+            placeholder="Enter access token here"
+            type="text"
+            readonly
+            value="<%= data.access_token %>"
+          />
+        </div>
+        <div>
+          <button id="copyBtn" type="button">Copy Access Token</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const instructions = document.querySelector(".instruction");
+      const copyButton = document.getElementById("copyBtn");
+      const accessTokenInput = document.getElementById("accessTokenInput");
+      const accessToken = accessTokenInput.value;
+
+      function copyTextToClipboard(text) {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+
+      function showCustomAlert(iconType, title, message) {
+        Swal.fire({
+          icon: iconType,
+          title: title,
+          text: message,
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(() => {
+          instructions.style.display = "inline";
+        });
+      }
+
+      document.addEventListener("mousedown", function (event) {
+        event.preventDefault();
+      });
+
+      accessTokenInput.addEventListener("click", function () {
+        copyTextToClipboard(accessToken);
+        showCustomAlert(
+          "success",
+          "Copied!",
+          "Access token copied to clipboard!",
+        );
+      });
+
+      copyButton.addEventListener("click", function () {
+        copyTextToClipboard(accessToken);
+        showCustomAlert(
+          "success",
+          "Copied!",
+          "Access token copied to clipboard!",
+        );
+      });
+    </script>
+  </body>
+</html>

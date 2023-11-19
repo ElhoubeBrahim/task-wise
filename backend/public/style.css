@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
+:root {
+  --primary-color: #16a085;
+  --light-primary-color: #16a08550;
+  --secondary-color: #1abc9c;
+  --instruction-color: #3b30b8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Kanit", sans-serif;
+}
+
+input,
+button {
+  font-family: "Kanit", sans-serif;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.content > :not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+.instruction {
+  margin-bottom: 20px;
+  color: var(--instruction-color);
+  margin-inline: 30px;
+  display: none;
+}
+
+.token-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 75%;
+}
+
+.access-input {
+  flex-grow: 1;
+  display: flex;
+  margin-right: 10px;
+}
+
+#accessTokenInput {
+  flex-grow: 1;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+
+#accessTokenInput:focus {
+  outline: none;
+}
+
+#accessTokenInput:hover {
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 0 3px var(--light-primary-color);
+}
+
+#copyBtn {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px;
+  white-space: nowrap;
+  box-shadow: 0 0 0 3px var(--light-primary-color);
+  transition: 0.3s all ease-in-out;
+}
+
+#copyBtn:hover {
+  background-color: var(--secondary-color);
+  box-shadow: none;
+}
