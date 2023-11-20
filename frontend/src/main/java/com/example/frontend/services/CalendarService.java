@@ -27,7 +27,7 @@ public class CalendarService {
         ).setApplicationName("Task Wise").build();
     }
 
-    public Event createEvent(CalendarEvent event) throws IOException {
+    protected Event constructEvent(CalendarEvent event) {
         String summary = event.getSummary();
         String description = event.getDescription();
         EventDateTime startTime = new EventDateTime().setDateTime(DateTime.parseRfc3339(event.getStartTime()));
@@ -39,6 +39,11 @@ public class CalendarService {
         calendarEvent.setStart(startTime);
         calendarEvent.setEnd(endTime);
 
+        return calendarEvent;
+    }
+
+    public Event createEvent(CalendarEvent event) throws IOException {
+        Event calendarEvent = constructEvent(event);
         return this.calendar.events().insert("primary", calendarEvent).execute();
     }
 }
