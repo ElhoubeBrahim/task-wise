@@ -70,8 +70,7 @@ public class AccessTokenService {
         ArrayList<String> scopes = new ArrayList<>();
         scopes.add("https://www.googleapis.com/auth/userinfo.profile");
         scopes.add("https://www.googleapis.com/auth/calendar");
-        scopes.add("https://www.googleapis.com/auth/contacts");
-        scopes.add("https://www.googleapis.com/auth/drive");
+        scopes.add("https://www.googleapis.com/auth/tasks");
 
         URL authUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
         Map<String, String> queryParams = new HashMap<>();

@@ -6,6 +6,7 @@ module com.example.frontend {
     requires com.google.api.client;
     requires com.google.api.client.json.gson;
     requires com.google.api.services.calendar;
+    requires com.google.api.services.tasks;
     requires com.google.api.client.auth;
     requires org.apache.httpcomponents.httpclient;
     requires org.apache.httpcomponents.httpcore;
