@@ -8,8 +8,8 @@
 <SplitPane fx:id="prompt_layout" dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frontend.controllers.PromptController">
     <AnchorPane id="fixedContent" fx:id="fixedContent" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="595.0">
             <VBox id="prompt-vbox-left" layoutX="1.0" maxWidth="Infinity" prefHeight="704.0" prefWidth="594.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <Label id="prompt-left-text" prefHeight="139.0" prefWidth="520.0" text="Hey! What's on your to-do list for tomorrow?" />
-                  <TextArea id="prompt-text-area" prefHeight="670.0" prefWidth="559.0">
+                  <Label id="prompt-left-text" prefWidth="520.0" text="Hey! What's on your to-do list for tomorrow?" />
+                  <TextArea id="prompt-text-area" fx:id="promptTextArea" prefWidth="559.0" VBox.vgrow="ALWAYS">
             <VBox.margin>
                <Insets bottom="20.0" top="10.0" />
             </VBox.margin></TextArea>

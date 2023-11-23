@@ -17,6 +17,8 @@ import java.security.NoSuchAlgorithmException;
 public class MainApp extends Application {
     public final static AccessTokenService accessTokenService = new AccessTokenService();
 
+    public final static String API_URL = "http://localhost:5000";
+
     private static Stage AppStage = null;
 
     @Override

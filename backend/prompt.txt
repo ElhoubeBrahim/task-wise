@@ -5,7 +5,7 @@ Any task that has a date must have a "calendarEvent" entry, and if it's a meetin
 Today's date to use in the dates fields of the response is: {{date}}
 The response should follow the schema below according to the given type:
 
-services: [
+events: [
   {
     type: "meet",
     title: "Test",

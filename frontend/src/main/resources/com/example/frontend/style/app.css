@@ -71,7 +71,6 @@
 #prompt-text-area {
     -fx-control-inner-background: -fx-textarea-background;
     -fx-text-fill: #ffffff;
-    -fx-max-height: Infinity;
     -fx-pref-width: Infinity;
     -fx-text-box-border: transparent;
     -fx-faint-focus-color: transparent;
@@ -140,4 +139,53 @@ making them transparent*/
     -fx-max-height: Infinity;
     -fx-max-width: Infinity;
     -fx-background-color: #ffffff;
+}
+
+.close-btn {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-cursor: pointer;
+}
+
+#approve-btn {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-padding: 10;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-max-width: Infinity;
+}
+
+#approve-btn:hover {
+    -fx-cursor: hand;
+}
+
+.event-card {
+    -fx-background-color: -fx-light-primary-10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-border-color: -fx-primary-color;
+}
+
+.event-card .event-card-close-btn {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-cursor: pointer;
+    -fx-padding: 5;
+}
+
+.event-card .event-card-close-btn:hover {
+    -fx-cursor: hand;
+}
+
+.event-card .event-card-title {
+    -fx-font-size: 22;
+    -fx-text-fill: -fx-gray-color;
+}
+
+.from-time,
+.to-time {
+    -fx-text-fill: -fx-gray-color;
+    -fx-font-weight: 900;
 }

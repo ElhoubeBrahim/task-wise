@@ -27,9 +27,13 @@ app.get("/", (req, res) => {
 app.post("/events", async (req, res) => {
   // Get user todo list
   let todo = req.body.todo;
-  if (!todo || todo.length === 0) {
+  if (!todo || todo.filter((item) => item !== "").length === 0) {
     return res.status(400).json({ error: "You must provide a todo list." });
   }
+
+  todo = todo
+    .filter((item) => item !== "")
+    .map((item) => item.trim());
 
   // Verify access token
   const accessToken = req.headers.authorization?.split(" ")[1] || null;

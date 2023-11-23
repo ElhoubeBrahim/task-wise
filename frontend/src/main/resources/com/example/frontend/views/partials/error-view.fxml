@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox id="no-event-vbox" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../style/app.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <ImageView fitHeight="90" fitWidth="90" pickOnBounds="true" preserveRatio="true">
+      <VBox.margin>
+         <Insets bottom="40.0" />
+      </VBox.margin>
+      <Image url="@../../images/close-icon-4x.png" />
+   </ImageView>
+   <Label id="no-event-title" text="Ooops!" />
+   <Label id="no-event-description" text="Something went wrong. Please try again." />
+</VBox>

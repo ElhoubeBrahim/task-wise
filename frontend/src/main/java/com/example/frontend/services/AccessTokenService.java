@@ -1,5 +1,6 @@
 package com.example.frontend.services;
 
+import com.example.frontend.MainApp;
 import com.example.frontend.exceptions.AccessTokenNotFoundException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -65,7 +66,7 @@ public class AccessTokenService {
      */
     public String generateAuthUrl() throws MalformedURLException {
         final String CLIENT_ID = "999379647431-7a0u8oot8ta7r0snhqq5f1tv9pvkpjiq.apps.googleusercontent.com";
-        final String REDIRECT_URI = "http://localhost:5000/authorize";
+        final String REDIRECT_URI = MainApp.API_URL + "/authorize";
 
         ArrayList<String> scopes = new ArrayList<>();
         scopes.add("https://www.googleapis.com/auth/userinfo.profile");
