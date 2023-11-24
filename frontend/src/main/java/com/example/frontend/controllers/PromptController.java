@@ -156,6 +156,9 @@ public class PromptController implements Initializable {
             throw new RuntimeException("Events container not found");
         }
 
+        // Clear the events cards container
+        eventsContainer.getChildren().clear();
+
         for (Event event : events) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/frontend/views/components/event-card.fxml"));
@@ -189,10 +192,28 @@ public class PromptController implements Initializable {
                     eventToTime.setText(event.getEnd());
                 }
 
+                // Set event card delete button click handler
+                Button deleteButton = (Button) eventCard.lookup(".event-card-close-btn");
+                deleteButton.setOnAction(event1 -> deleteEvent(event));
+
                 eventsContainer.getChildren().add(eventCard);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    public void deleteEvent(Event event) {
+        Alert alert = new Alert(
+            Alert.AlertType.CONFIRMATION,
+            "Are you sure you want to delete this event?",
+            ButtonType.YES, ButtonType.NO
+        );
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            events.remove(event);
+            loadEventsCards();
         }
     }
 }
