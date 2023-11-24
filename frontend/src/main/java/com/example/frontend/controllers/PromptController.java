@@ -1,8 +1,13 @@
 package com.example.frontend.controllers;
 
 import com.example.frontend.MainApp;
+import com.example.frontend.models.CalendarEvent;
 import com.example.frontend.models.Event;
 import com.example.frontend.models.EventsResponse;
+import com.example.frontend.models.TaskTodo;
+import com.example.frontend.services.CalendarService;
+import com.example.frontend.services.MeetService;
+import com.example.frontend.services.TasksService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
@@ -73,16 +78,7 @@ public class PromptController implements Initializable {
     }
 
     private void onSubmitButtonCLick() throws IOException {
-        loadView("partials/loading-view");
-
-        // Rotate the loader icon
-        Node loaderIcon = dynamicContent.lookup("#loader-icon");
-        RotateTransition rotate = new RotateTransition();
-        rotate.setByAngle(360);
-        rotate.setCycleCount(RotateTransition.INDEFINITE);
-        rotate.setDuration(Duration.millis(500));
-        rotate.setNode(loaderIcon);
-        rotate.play();
+        loadLoadingView();
 
         // Disable the submit button
         changeContentButton.setDisable(true);
@@ -148,6 +144,56 @@ public class PromptController implements Initializable {
         }
     }
 
+    private void createEvents() throws IOException {
+        loadLoadingView();
+
+        new Thread(() -> {
+            Platform.runLater(() -> {
+                try {
+                    for (Event event : events) {
+                        switch (event.getType()) {
+                            case "meet":
+                                CalendarEvent calendarEvent = new CalendarEvent(
+                                        event.getTitle(),
+                                        event.getDescription(),
+                                        event.getStart(),
+                                        event.getEnd()
+                                );
+
+                                MeetService meetService = new MeetService();
+                                meetService.createEvent(calendarEvent);
+                                break;
+                            case "calendarEvent":
+                                CalendarEvent calendarEvent1 = new CalendarEvent(
+                                        event.getTitle(),
+                                        event.getDescription(),
+                                        event.getStart(),
+                                        event.getEnd()
+                                );
+
+                                CalendarService calendarService = new CalendarService();
+                                calendarService.createEvent(calendarEvent1);
+                                break;
+                            case "note":
+                                TaskTodo taskTodo = new TaskTodo(
+                                        event.getTitle(),
+                                        event.getTodos()
+                                );
+
+                                TasksService tasksService = new TasksService();
+                                tasksService.createTodoList(taskTodo);
+                                break;
+                        }
+                    }
+
+                    loadView("partials/success-view");
+                } catch (IOException e) {
+                    loadView("partials/error-view");
+                }
+            });
+        }).start();
+    }
+
     private void loadEventsCards() {
         ScrollPane scrollPane = (ScrollPane) dynamicContent.lookup("#events-scroll-pane");
         VBox eventsContainer = (VBox) scrollPane.getContent().lookup("#event-cards-container");
@@ -158,6 +204,16 @@ public class PromptController implements Initializable {
 
         // Clear the events cards container
         eventsContainer.getChildren().clear();
+
+        // Set approve button click handler
+        Button approveButton = (Button) dynamicContent.lookup("#approve-btn");
+        approveButton.setOnAction(event -> {
+            try {
+                createEvents();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         for (Event event : events) {
             try {
@@ -188,8 +244,8 @@ public class PromptController implements Initializable {
                     eventTimeContainer.setVisible(false);
                     eventTimeContainer.setManaged(false);
                 } else {
-                    eventFromTime.setText(event.getStart());
-                    eventToTime.setText(event.getEnd());
+                    eventFromTime.setText(event.getFormattedStart());
+                    eventToTime.setText(event.getFormattedEnd());
                 }
 
                 // Set event card delete button click handler
@@ -201,6 +257,19 @@ public class PromptController implements Initializable {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    private void loadLoadingView() {
+        loadView("partials/loading-view");
+
+        // Rotate the loader icon
+        Node loaderIcon = dynamicContent.lookup("#loader-icon");
+        RotateTransition rotate = new RotateTransition();
+        rotate.setByAngle(360);
+        rotate.setCycleCount(RotateTransition.INDEFINITE);
+        rotate.setDuration(Duration.millis(500));
+        rotate.setNode(loaderIcon);
+        rotate.play();
     }
 
     public void deleteEvent(Event event) {

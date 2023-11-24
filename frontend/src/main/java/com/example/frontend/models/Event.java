@@ -37,6 +37,10 @@ public class Event {
 
     @JsonProperty("start")
     public String getStart() {
+        return start;
+    }
+
+    public String getFormattedStart() {
         ZonedDateTime startTime = ZonedDateTime.parse(start);
         return startTime.format(DateTimeFormatter.ofPattern("HH:mm a"));
     }
@@ -47,6 +51,10 @@ public class Event {
 
     @JsonProperty("end")
     public String getEnd() {
+        return end;
+    }
+
+    public String getFormattedEnd() {
         ZonedDateTime endTime = ZonedDateTime.parse(end);
         return endTime.format(DateTimeFormatter.ofPattern("HH:mm a"));
     }
