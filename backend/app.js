@@ -5,6 +5,7 @@ const app = express();
 const { google } = require("googleapis");
 const path = require("path");
 const { setupPrompt, getPromptCompletion, verifyGoogleAccessToken } = require("./helpers");
+const logger = require("./logger");
 
 // Setup json body parser
 app.use(express.json());
@@ -25,9 +26,13 @@ app.get("/", (req, res) => {
 });
 
 app.post("/events", async (req, res) => {
+  // Get user ip address
+  const ip_address = req.ip;
+
   // Get user todo list
   let todo = req.body.todo;
   if (!todo || todo.filter((item) => item !== "").length === 0) {
+    logger.error(ip_address, null, "Todo list is empty.");
     return res.status(400).json({ error: "You must provide a todo list." });
   }
 
@@ -39,6 +44,7 @@ app.post("/events", async (req, res) => {
   const accessToken = req.headers.authorization?.split(" ")[1] || null;
   const isAccessTokenValid = accessToken && await verifyGoogleAccessToken(accessToken);
   if (!isAccessTokenValid) {
+    logger.error(ip_address, JSON.stringify(todo), "Invalid access token.");
     return res.status(401).json({ error: "You must provide a valid access token." });
   }
 
@@ -52,9 +58,11 @@ app.post("/events", async (req, res) => {
   try {
     response = JSON.parse(response);
   } catch (e) {
+    logger.error(ip_address, JSON.stringify(todo), e.message);
     return res.status(500).json({ error: "Something went wrong. Please try again." });
   }
 
+  logger.success(ip_address, JSON.stringify(todo), JSON.stringify(response));
   res.json({ ...response });
 });
 
@@ -76,5 +84,6 @@ app.get("/authorize", async (req, res) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
+  logger.setupDatabase();
   console.log(`Example app listening on port ${port}`);
 });
